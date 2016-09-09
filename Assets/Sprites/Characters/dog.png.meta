@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: a3c9f851f6ffb114ab665e83e4a0b2ae
-timeCreated: 1473436329
+timeCreated: 1473438350
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: upperArm
+    21300002: thigh
+    21300004: neck
+    21300006: head
+    21300008: lowerBody
+    21300010: upperBody
+    21300012: lowerArm
+    21300014: dog_7
+    21300016: tail
+    21300018: foot
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +48,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +59,107 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: upperArm
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 50
+        width: 28
+        height: 45
+      alignment: 9
+      pivot: {x: .495071322, y: .748407662}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: thigh
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 49
+        width: 38
+        height: 47
+      alignment: 9
+      pivot: {x: .670689523, y: .708474517}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neck
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 45
+        width: 44
+        height: 50
+      alignment: 9
+      pivot: {x: .371405154, y: .284713298}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: head
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 53
+        width: 63
+        height: 41
+      alignment: 9
+      pivot: {x: .24808757, y: .207161695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lowerBody
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 54
+        height: 37
+      alignment: 9
+      pivot: {x: .303216159, y: .507459581}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upperBody
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 61
+        height: 42
+      alignment: 9
+      pivot: {x: .214942053, y: .496714234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lowerArm
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 6
+        width: 16
+        height: 35
+      alignment: 9
+      pivot: {x: .361995697, y: .843039036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dog_7
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 34
+        width: 25
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tail
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 23
+        width: 28
+        height: 6
+      alignment: 9
+      pivot: {x: .830224156, y: .546000481}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: foot
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 5
+        width: 24
+        height: 15
+      alignment: 9
+      pivot: {x: .16100502, y: .751592398}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

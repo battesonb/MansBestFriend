@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 368be04a40dca1d4d98841fd4f011046
-timeCreated: 1473436327
+guid: 3256a35d7af2b614dae2979fa1cddc1a
+timeCreated: 1473438640
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: head
+    21300002: hand
+    21300004: hips
+    21300006: neck
+    21300008: torso
+    21300010: calf
+    21300012: shoe
+    21300014: upperArm
+    21300016: lowerArm
+    21300018: thigh
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +48,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +59,107 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: head
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 72
+        width: 82
+        height: 82
+      alignment: 9
+      pivot: {x: .376036376, y: .213334158}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hand
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 127
+        width: 13
+        height: 16
+      alignment: 9
+      pivot: {x: .483709484, y: .685299873}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hips
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 28
+        height: 23
+      alignment: 9
+      pivot: {x: .469747037, y: .665733993}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: neck
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 90
+        width: 23
+        height: 28
+      alignment: 9
+      pivot: {x: .306643277, y: .220159799}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: torso
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1
+        width: 30
+        height: 89
+      alignment: 9
+      pivot: {x: .47176379, y: .0907344371}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: calf
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 2
+        width: 8
+        height: 63
+      alignment: 9
+      pivot: {x: .552942753, y: .926903963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shoe
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 3
+        width: 35
+        height: 20
+      alignment: 9
+      pivot: {x: .221671954, y: .457646191}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upperArm
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 11
+        width: 19
+        height: 61
+      alignment: 9
+      pivot: {x: .478822708, y: .85758096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: lowerArm
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 14
+        width: 6
+        height: 48
+      alignment: 9
+      pivot: {x: .535293579, y: .901482999}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: thigh
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 17
+        height: 81
+      alignment: 9
+      pivot: {x: .48754254, y: .90785563}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
