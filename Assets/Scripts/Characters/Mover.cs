@@ -87,8 +87,8 @@ public abstract class Mover : MonoBehaviour {
         {
             if (Mathf.Abs(input) > float.Epsilon)
                 direction = input < 0 ? -1 : 1;
-            transform.localScale = new Vector3(direction, transform.localScale.y);
         }
+        transform.localScale = new Vector3(direction, transform.localScale.y);
     }
 
     public void CollisionMove()
