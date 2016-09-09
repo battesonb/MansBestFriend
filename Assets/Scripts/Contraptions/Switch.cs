@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class Switch : MonoBehaviour {
-    public IDevice connectedDevice;
+    public Device connectedDevice;
 
     protected bool active;
 
