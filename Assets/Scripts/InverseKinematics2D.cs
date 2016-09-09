@@ -5,32 +5,14 @@ using System.Collections;
 public class InverseKinematics2D : MonoBehaviour
 {
     // TODO implement limits.
-    //public Node[] angleLimits = new Node[0];
     public int chainLength = 2;
     [Range(0.001f, 0.5f)]
     public float laziness = 0.25f;
     public Transform endTransform;
     public bool invert = false; // Cheeky way of implementing limits.
 
-    [System.Serializable]
-    public class Node
-    {
-        public Transform Transform;
-        public float min;
-        public float max;
-    }
-
     void OnValidate()
     {
-        // Clamp min/max between -360 ... 360.
-        /*
-        foreach (var node in angleLimits)
-        {
-            node.min = Mathf.Clamp(node.min, -360, 360);
-            node.max = Mathf.Clamp(node.max, -360, 360);
-        }
-        */
-        // Chains can't be shorter than one.
         chainLength = Mathf.Max(chainLength, 1);
     }
 
@@ -80,13 +62,14 @@ public class InverseKinematics2D : MonoBehaviour
         Vector2 displacement = transform.position - armatureParent.position;
         float targetAngle = Mathf.Atan2(displacement.y, displacement.x);
 
-        bool modelInverted = Mathf.Sign(transform.root.localScale.x) == -1;
+        bool modelInverted = (int)Mathf.Sign(transform.root.localScale.x) == -1;
         if (modelInverted)
         {
-            parentRestingAngle *= -1;
-            parentRestingAngle += Mathf.PI;
+            targetAngle *= -1;
+            targetAngle += Mathf.PI;
         }
-        if (invert && !modelInverted || !invert && modelInverted)
+
+        if (invert)
         {
             armatureParent.rotation = Quaternion.Euler(0, 0, (targetAngle + angle - parentRestingAngle) * Mathf.Rad2Deg);
         }
@@ -95,7 +78,6 @@ public class InverseKinematics2D : MonoBehaviour
             armatureParent.rotation = Quaternion.Euler(0, 0, (targetAngle - angle - parentRestingAngle) * Mathf.Rad2Deg);
         }
 
-        // This would only happen for the final armature, so we can't generalise this method.
         PointToTarget(endTransform.parent);
     }
 
@@ -106,13 +88,12 @@ public class InverseKinematics2D : MonoBehaviour
         Vector2 displacement = transform.position - armature.position;
         float angle = Mathf.Atan2(displacement.y, displacement.x);
 
-        if (Mathf.Sign(transform.root.localScale.x) == -1)
+        if ((int)Mathf.Sign(transform.root.localScale.x) == -1)
         {
-            restingAngle *= -1;
-            restingAngle += Mathf.PI;
+            angle *= -1;
+            angle -= Mathf.PI;
         }
         armature.rotation = Quaternion.Euler(0, 0, (angle - restingAngle) * Mathf.Rad2Deg);
-
     }
 
     float GetRestingAngle(Transform trans)
