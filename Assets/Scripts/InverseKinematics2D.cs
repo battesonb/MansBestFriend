@@ -36,9 +36,6 @@ public class InverseKinematics2D : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!Application.isPlaying)
-            Start();
-
         if (chainLength == 1)
         {
             PointToTarget(endTransform.parent);
@@ -72,7 +69,12 @@ public class InverseKinematics2D : MonoBehaviour
             PointToTarget(endTransform.parent);
             return;
         }
-        float angle = Mathf.Acos((a * a + b * b - c * c) / (2 * a * b));
+        float denom = (2 * a * b);
+        float angle;
+        if (denom != 0)
+            angle = Mathf.Acos((a * a + b * b - c * c) / denom);
+        else
+            angle = 0;
 
         // And Rotate
         Vector2 displacement = transform.position - armatureParent.position;

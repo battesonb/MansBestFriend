@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3256a35d7af2b614dae2979fa1cddc1a
-timeCreated: 1473438640
+timeCreated: 1473440168
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,7 +98,7 @@ TextureImporter:
         width: 23
         height: 28
       alignment: 9
-      pivot: {x: .306643277, y: .220159799}
+      pivot: {x: .269813865, y: .167217255}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: torso
       rect:
@@ -158,7 +158,7 @@ TextureImporter:
         width: 17
         height: 81
       alignment: 9
-      pivot: {x: .48754254, y: .90785563}
+      pivot: {x: .47508508, y: .970602691}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
