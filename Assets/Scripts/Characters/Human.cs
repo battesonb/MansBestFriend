@@ -2,7 +2,8 @@
 using System.Collections;
 
 [RequireComponent(typeof(Animator))]
-public class Human : Mover {
+public class Human : Mover
+{
     protected Animator animator;
 
     protected override void Start ()
@@ -16,7 +17,11 @@ public class Human : Mover {
     {
         base.Update();
 
+        bool active = StateManager.Instance.humanActive;
+        Move(active);
+
         animator.SetFloat("speed", Mathf.Abs(currentSpeed.x));
         animator.SetBool("grounded", grounded);
-	}
+        animator.SetBool("active", active);
+    }
 }

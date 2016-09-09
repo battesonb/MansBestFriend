@@ -10,7 +10,7 @@ public class PlayButton : MonoBehaviour {
     {
         playButton = GetComponent<Button>();
         playButton.onClick.AddListener(() => {
-            Application.LoadLevel("level1");
+            StartCoroutine(StateManager.Instance.loadLevelAsync(1));
         });
 	}
 }

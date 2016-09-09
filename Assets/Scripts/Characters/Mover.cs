@@ -39,46 +39,56 @@ public abstract class Mover : MonoBehaviour {
 
     protected virtual void Update ()
     {
-        Move();
+        
 	}
 
-    public void Move()
+    public void Move(bool active)
     {
         // Flip transform so matrix math continues to work
         transform.localScale = new Vector2(1, 1);
 
         float input = Input.GetAxisRaw("Horizontal");
-        if (Mathf.Abs(input) > float.Epsilon)
+        if (active)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && grounded)
+            if (Mathf.Abs(input) > float.Epsilon)
             {
-                desiredSpeed = topSpeed * input;
+                if (Input.GetKey(KeyCode.LeftShift) && grounded)
+                {
+                    desiredSpeed = topSpeed * input;
+                }
+                else
+                {
+                    desiredSpeed = speed * input;
+                }
+                currentSpeed.x = AccelerateTowards(currentSpeed.x, desiredSpeed, acceleration);
             }
             else
-            {
-                desiredSpeed = speed * input;
-            }
-            currentSpeed.x = AccelerateTowards(currentSpeed.x, desiredSpeed, acceleration);
-        }
-        else
-            currentSpeed.x = AccelerateTowards(currentSpeed.x, 0, deceleration);
+                currentSpeed.x = AccelerateTowards(currentSpeed.x, 0, deceleration);
 
-        if(Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            currentSpeed.y += jumpHeight;
-            grounded = false;
-            jumped = true;
+            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            {
+                currentSpeed.y += jumpHeight;
+                grounded = false;
+                jumped = true;
+            }
         }
         else
-            currentSpeed.y -= gravity * Time.deltaTime;
+        {
+            currentSpeed.x = AccelerateTowards(currentSpeed.x, 0, deceleration);
+        }
+
+        currentSpeed.y -= gravity * Time.deltaTime;
 
 
         CollisionMove();
 
         // Flip to correct orientation
-        if(Mathf.Abs(input) > float.Epsilon)
-            direction = input < 0 ? -1 : 1;
-        transform.localScale = new Vector3(direction, transform.localScale.y);
+        if (active)
+        {
+            if (Mathf.Abs(input) > float.Epsilon)
+                direction = input < 0 ? -1 : 1;
+            transform.localScale = new Vector3(direction, transform.localScale.y);
+        }
     }
 
     public void CollisionMove()
