@@ -92,7 +92,7 @@ public abstract class Mover : MonoBehaviour {
         int yDir = (int)Mathf.Sign(deltaY);
         for (int i = 0; i < divisionsX; i++)
         {
-            float x = (p.x - size.x / 2) + i * size.x / (divisionsX - 1);
+            float x = (p.x + center.x - size.x / 2) + i * size.x / (divisionsX - 1);
             float y = p.y + center.y + yDir * size.y / 2;
 
             Ray2D ray = new Ray2D(new Vector2(x, y), new Vector2(0, yDir));
