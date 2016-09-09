@@ -2,17 +2,18 @@
 using System.Collections;
 
 [RequireComponent(typeof(Animator))]
-public class Human : Mover {
+public class Dog : Mover
+{
     protected Animator animator;
 
-    protected override void Start ()
+    protected override void Start()
     {
         base.Start();
 
         animator = GetComponent<Animator>();
-	}
+    }
 
-    protected override void Update ()
+    protected override void Update()
     {
         base.Update();
 
@@ -23,5 +24,5 @@ public class Human : Mover {
             jumped = false;
         }
         animator.SetBool("grounded", grounded);
-	}
+    }
 }

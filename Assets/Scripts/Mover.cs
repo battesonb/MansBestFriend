@@ -1,26 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public abstract class Mover : MonoBehaviour {
     public float speed = 0.15f;
     public float topSpeed = 0.27f;
     public float acceleration = 0.85f;
     public float deceleration = 1.5f;
+    public float jumpHeight = 0.2f;
+
+    public LayerMask collisionMask;
 
     [SerializeField]
-    protected float currentSpeed = 0f;
+    protected Vector2 currentSpeed = new Vector2(0, 0);
+    [SerializeField]
+    protected static float gravity = 0.5f;
     protected float desiredSpeed = 0f;
     protected int direction = 1;
+    protected bool grounded = false;
+    protected bool jumped = false;
 
     protected BoxCollider2D boxCollider;
     protected Vector2 size;
     protected Vector2 center;
 
+    private float skin = 0.001f;
+
 	protected virtual void Start ()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         size = boxCollider.size;
-        center = boxCollider.size;
+        center = boxCollider.offset;
 	}
 
     protected virtual void Update ()
@@ -36,7 +46,7 @@ public abstract class Mover : MonoBehaviour {
         float input = Input.GetAxisRaw("Horizontal");
         if (Mathf.Abs(input) > float.Epsilon)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && grounded)
             {
                 desiredSpeed = topSpeed * input;
             }
@@ -44,17 +54,62 @@ public abstract class Mover : MonoBehaviour {
             {
                 desiredSpeed = speed * input;
             }
-            currentSpeed = AccelerateTowards(currentSpeed, desiredSpeed, acceleration);
+            currentSpeed.x = AccelerateTowards(currentSpeed.x, desiredSpeed, acceleration);
         }
         else
-            currentSpeed = AccelerateTowards(currentSpeed, 0, deceleration);
+            currentSpeed.x = AccelerateTowards(currentSpeed.x, 0, deceleration);
 
-        transform.Translate(new Vector2(currentSpeed, 0));
+        if(Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            currentSpeed.y += jumpHeight;
+            grounded = false;
+            jumped = true;
+        }
+        else
+            currentSpeed.y -= gravity * Time.deltaTime;
+
+
+        CollisionMove();
 
         // Flip to correct orientation
         if(Mathf.Abs(input) > float.Epsilon)
             direction = input < 0 ? -1 : 1;
         transform.localScale = new Vector3(direction, transform.localScale.y);
+    }
+
+    public void CollisionMove()
+    {
+        float deltaX = currentSpeed.x;
+        float deltaY = currentSpeed.y;
+
+        int divisionsX = 3;
+        Vector2 p = boxCollider.transform.position;
+
+        // Check y directions
+        int yDir = (int)Mathf.Sign(deltaY);
+        for (int i = 0; i < divisionsX; i++)
+        {
+            float x = (p.x - size.x / 2) + i * size.x / (divisionsX - 1);
+            float y = p.y + center.y + yDir * size.y / 2;
+
+            Ray2D ray = new Ray2D(new Vector2(x, y), new Vector2(0, yDir));
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Abs(deltaY) + skin, collisionMask);
+            if (hit.collider)
+            {
+                float d = Vector2.Distance(ray.origin, hit.point);
+
+                grounded = true;
+                currentSpeed.y = 0;
+
+                if (d > skin)
+                    deltaY = yDir * (d - skin);
+                else
+                    deltaY = 0;
+                break;
+            }
+        }
+
+        transform.Translate(new Vector2(deltaX, deltaY));
     }
 
     // Accelerates a scalar speed towards a target speed.
