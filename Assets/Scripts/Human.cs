@@ -17,11 +17,6 @@ public class Human : Mover {
         base.Update();
 
         animator.SetFloat("speed", Mathf.Abs(currentSpeed.x));
-        if (jumped)
-        {
-            animator.SetTrigger("jumped");
-            jumped = false;
-        }
         animator.SetBool("grounded", grounded);
 	}
 }

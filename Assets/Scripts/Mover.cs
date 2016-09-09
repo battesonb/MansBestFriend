@@ -9,6 +9,9 @@ public abstract class Mover : MonoBehaviour {
     public float deceleration = 1.5f;
     public float jumpHeight = 0.2f;
 
+    public int divisionsX = 3;
+    public int divisionsY = 9;
+
     public LayerMask collisionMask;
 
     [SerializeField]
@@ -25,8 +28,9 @@ public abstract class Mover : MonoBehaviour {
     protected Vector2 center;
 
     private float skin = 0.001f;
+    private bool wallCollision = false;
 
-	protected virtual void Start ()
+    protected virtual void Start ()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         size = boxCollider.size;
@@ -82,8 +86,7 @@ public abstract class Mover : MonoBehaviour {
         float deltaX = currentSpeed.x;
         float deltaY = currentSpeed.y;
 
-        int divisionsX = 3;
-        Vector2 p = boxCollider.transform.position;
+        Vector2 p = transform.position;
 
         // Check y directions
         int yDir = (int)Mathf.Sign(deltaY);
@@ -93,19 +96,61 @@ public abstract class Mover : MonoBehaviour {
             float y = p.y + center.y + yDir * size.y / 2;
 
             Ray2D ray = new Ray2D(new Vector2(x, y), new Vector2(0, yDir));
+            Debug.DrawRay(ray.origin, ray.direction);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Abs(deltaY) + skin, collisionMask);
             if (hit.collider)
             {
                 float d = Vector2.Distance(ray.origin, hit.point);
 
-                grounded = true;
-                currentSpeed.y = 0;
-
+                if(yDir < 0)
+                {
+                    grounded = true;
+                    currentSpeed.y = 0;
+                }
+                
                 if (d > skin)
                     deltaY = yDir * (d - skin);
                 else
                     deltaY = 0;
                 break;
+            }
+        }
+
+        // Check x directions
+        int xDir = (int)Mathf.Sign(deltaX);
+        for (int i = 0; i < divisionsY; i++)
+        {
+            float x = p.x + center.x + xDir * size.x / 2;
+            float y = (p.y + center.y - size.y / 2) + i * size.y / (divisionsY - 1);
+
+            Ray2D ray = new Ray2D(new Vector2(x, y), new Vector2(xDir, 0));
+            Debug.DrawRay(ray.origin, ray.direction);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Abs(deltaX) + skin, collisionMask);
+            if (hit.collider)
+            {
+                float d = Vector2.Distance(ray.origin, hit.point);
+                wallCollision = true;
+                currentSpeed.x = 0;
+                if (d > skin)
+                    deltaX = xDir * (d - skin);
+                else
+                    deltaX = 0;
+                break;
+            }
+        }
+
+        // Check player velocity angle
+        if (!grounded && !wallCollision)
+        {
+            Vector2 playerDir = new Vector2(deltaX, deltaY).normalized;
+            Vector2 o = new Vector2(p.x + center.x + Mathf.Sign(deltaX) * size.x / 2, p.y + center.y + Mathf.Sign(deltaY) * size.y / 2);
+            Ray2D ray = new Ray2D(o, playerDir);
+            Debug.DrawRay(ray.origin, ray.direction);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Sqrt(deltaX * deltaX + deltaY * deltaY), collisionMask);
+            if (hit.collider)
+            {
+                grounded = true;
+                deltaY = 0;
             }
         }
 
