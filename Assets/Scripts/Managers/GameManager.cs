@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour {
             StateManager.Instance.humanActive = !StateManager.Instance.humanActive;
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel("level" + StateManager.Instance.level);
+        }
+
         CameraFollowActive();
     }
 

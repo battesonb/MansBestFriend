@@ -5,28 +5,37 @@ using System.Collections;
 public class Switch : MonoBehaviour {
     public Device connectedDevice;
 
-    protected bool active;
+    protected int activeCount;
 
     private Animator animator;
 
 	void Start ()
     {
-        active = false;
+        activeCount = 0;
         animator = GetComponent<Animator>();
 	}
 
-    void onTriggerEnter()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        active = true;
+        if (other.tag == "Player")
+        {
+            activeCount++;
+            TriggerDevice();
+        }
     }
 
-    void onTriggerExit()
+    void OnTriggerExit2D(Collider2D other)
     {
-        active = false;
+        if (other.tag == "Player")
+        {
+            activeCount--;
+            TriggerDevice();
+        }
     }
 
     void TriggerDevice()
     {
+        bool active = activeCount != 0;
         animator.SetBool("active", active);
         if(active)
         {
