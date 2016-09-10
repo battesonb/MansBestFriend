@@ -20,6 +20,8 @@ public class Switch : MonoBehaviour {
         if (other.tag == "Player")
         {
             activeCount++;
+            if(connectedDevice)
+                connectedDevice.sources++;
             TriggerDevice();
         }
     }
@@ -29,6 +31,8 @@ public class Switch : MonoBehaviour {
         if (other.tag == "Player")
         {
             activeCount--;
+            if (connectedDevice)
+                connectedDevice.sources--;
             TriggerDevice();
         }
     }
@@ -37,12 +41,16 @@ public class Switch : MonoBehaviour {
     {
         bool active = activeCount != 0;
         animator.SetBool("active", active);
-        if(active)
+        if (connectedDevice)
         {
-            connectedDevice.Activate(this);
-        } else
-        {
-            connectedDevice.Deactivate(this);
+            if (active)
+            {
+                connectedDevice.Activate(this);
+            }
+            else
+            {
+                connectedDevice.Deactivate(this);
+            }
         }
     }
 }

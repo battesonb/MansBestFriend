@@ -30,7 +30,8 @@ public class Bridge : Device {
         if (active)
         {
             active = false;
-            StartCoroutine(Contract());
+            if (sources == 0)
+                StartCoroutine(Contract());
         }
     }
 

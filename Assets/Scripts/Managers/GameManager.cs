@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour {
     public Dog dog;
 
 	void Start ()
-    {
-        mainCamera = GetComponent<Camera>();
-
+    {      
         instance = this;
+
+        mainCamera = GetComponent<Camera>();
 
         if (StateManager.Instance.level != 0)
         {
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour {
 
     private void loadScreenThenLevel(bool incLevel)
     {
-        if(incLevel)
+        if (incLevel)
             StateManager.Instance.level++;
         if (StateManager.Instance.level < Application.levelCount) // Accounts for menu screen
         {
@@ -82,6 +82,6 @@ public class GameManager : MonoBehaviour {
         {
             Application.LoadLevel("Menu");
             StateManager.Instance.level = 0;
-        }
+        }        
     }
 }
