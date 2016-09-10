@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 56da5c2b903f9fb42a700872ff55f6a4
+timeCreated: 1473473040
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: vegetation_0
+    21300002: vegetation_1
+    21300004: vegetation_2
+    21300006: vegetation_3
+    21300008: vegetation_4
+    21300010: vegetation_5
+    21300012: vegetation_6
+    21300014: vegetation_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: vegetation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 76
+        width: 159
+        height: 108
+      alignment: 9
+      pivot: {x: .488860458, y: .0384630263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_1
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 121
+        width: 26
+        height: 57
+      alignment: 9
+      pivot: {x: .636244535, y: .0738520026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_2
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 126
+        width: 29
+        height: 34
+      alignment: 9
+      pivot: {x: .648324907, y: .090694204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_3
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 129
+        width: 23
+        height: 25
+      alignment: 9
+      pivot: {x: .477996826, y: .489878535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 36
+        width: 131
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_5
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 53
+        width: 30
+        height: 59
+      alignment: 9
+      pivot: {x: .567472816, y: .109740697}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_6
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 48
+        width: 6
+        height: 64
+      alignment: 9
+      pivot: {x: .373484284, y: .0690661073}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: vegetation_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 331
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
