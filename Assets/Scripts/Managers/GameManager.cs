@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour {
 
             CameraFollowActive();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     void CameraFollowActive()
