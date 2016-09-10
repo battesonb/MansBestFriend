@@ -14,29 +14,5 @@ public class StateManager
     }
 
     public bool humanActive = true;
-    public int level = 0;
-
-    public IEnumerator loadLevelAsync()
-    {
-        level++;
-        AsyncOperation async = Application.LoadLevelAsync("Level" + level);
-        yield return async;
-        humanActive = true;
-    }
-
-    public void loadNextLevel()
-    {
-        level++;
-        if (level < Application.levelCount)
-        {
-            Application.LoadLevel("Level" + level);
-
-            humanActive = true;
-        }
-        else
-        {
-            Application.LoadLevel("Menu");
-            level = 0;
-        }
-    }
+    public int level = 1;
 }

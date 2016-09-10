@@ -34,18 +34,21 @@ public class LevelManager : MonoBehaviour {
 
     void UpdateHints()
     {
-        Collider2D humanCollider = GameManager.instance.human.GetComponent<BoxCollider2D>();
-        Collider2D dogCollider = GameManager.instance.dog.GetComponent<BoxCollider2D>();
-        if (humanCollider && dogCollider)
+        if (GameManager.instance.human && GameManager.instance.human)
         {
-            foreach (Hint hint in hints)
+            Collider2D humanCollider = GameManager.instance.human.GetComponent<BoxCollider2D>();
+            Collider2D dogCollider = GameManager.instance.dog.GetComponent<BoxCollider2D>();
+            if (humanCollider && dogCollider)
             {
-                bool touching = hint.collider.IsTouching(humanCollider) || hint.collider.IsTouching(dogCollider);
-
-                if (touching)
+                foreach (Hint hint in hints)
                 {
-                    talkText.text = hint.text;
-                    break;
+                    bool touching = hint.collider.IsTouching(humanCollider) || hint.collider.IsTouching(dogCollider);
+
+                    if (touching)
+                    {
+                        talkText.text = hint.text;
+                        break;
+                    }
                 }
             }
         }
@@ -53,15 +56,18 @@ public class LevelManager : MonoBehaviour {
 
     void CheckIfFinished()
     {
-        Collider2D humanCollider = GameManager.instance.human.GetComponent<Collider2D>();
-        Collider2D dogCollider = GameManager.instance.dog.GetComponent<Collider2D>();
-
-        bool touching = finish.IsTouching(humanCollider) && finish.IsTouching(dogCollider);
-
-        if (touching && !loading)
+        if (GameManager.instance.human && GameManager.instance.human)
         {
-            loading = true;
-            StateManager.Instance.loadNextLevel();
+            Collider2D humanCollider = GameManager.instance.human.GetComponent<Collider2D>();
+            Collider2D dogCollider = GameManager.instance.dog.GetComponent<Collider2D>();
+
+            bool touching = finish.IsTouching(humanCollider) && finish.IsTouching(dogCollider);
+
+            if (touching && !loading)
+            {
+                loading = true;
+                GameManager.instance.loadNextLevel();
+            }
         }
     }
 }
