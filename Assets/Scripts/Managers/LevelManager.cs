@@ -24,23 +24,29 @@ public class LevelManager : MonoBehaviour {
 
 	void Update ()
     {
-        UpdateHints();
+        if (StateManager.Instance.level != 0)
+        {
+            UpdateHints();
 
-        CheckIfFinished();
+            CheckIfFinished();
+        }
     }
 
     void UpdateHints()
     {
         Collider2D humanCollider = GameManager.instance.human.GetComponent<BoxCollider2D>();
         Collider2D dogCollider = GameManager.instance.dog.GetComponent<BoxCollider2D>();
-        foreach (Hint hint in hints)
+        if (humanCollider && dogCollider)
         {
-            bool touching = hint.collider.IsTouching(humanCollider) || hint.collider.IsTouching(dogCollider);
-
-            if (touching)
+            foreach (Hint hint in hints)
             {
-                talkText.text = hint.text;
-                break;
+                bool touching = hint.collider.IsTouching(humanCollider) || hint.collider.IsTouching(dogCollider);
+
+                if (touching)
+                {
+                    talkText.text = hint.text;
+                    break;
+                }
             }
         }
     }
@@ -55,8 +61,7 @@ public class LevelManager : MonoBehaviour {
         if (touching && !loading)
         {
             loading = true;
-            StateManager.Instance.level++;
-            StateManager.Instance.loadLevelAsync();
+            StateManager.Instance.loadNextLevel();
         }
     }
 }
