@@ -25,8 +25,16 @@ public class StateManager
 
     public IEnumerator loadLevelAsync()
     {
-        AsyncOperation async = Application.LoadLevelAsync("level" + level);
-        yield return async;
-        humanActive = true;
+        if (level <= Application.levelCount)
+        {
+            AsyncOperation async = Application.LoadLevelAsync("level" + level);
+            yield return async;
+            humanActive = true;
+        }
+        else
+        {
+            AsyncOperation async = Application.LoadLevelAsync("menu");
+            yield return async;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera))]
 public class GameManager : MonoBehaviour {
@@ -8,8 +9,11 @@ public class GameManager : MonoBehaviour {
     public Dog dogPrefab;
 
     private Camera mainCamera;
-    private Human human;
-    private Dog dog;
+
+    [HideInInspector]
+    public Human human;
+    [HideInInspector]
+    public Dog dog;
 
 	void Start ()
     {
